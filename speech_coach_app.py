@@ -131,6 +131,49 @@ st.markdown(t["info_format"])
 
 openai.api_key = st.secrets["openai_key"]
 
+def format_feedback_as_html(feedback_text, langue):
+    html = feedback_text
+    html = html.replace("✓", "<span style='color:green; font-weight:bold;'>✓</span>")
+    html = html.replace("⚠️", "<span style='color:red; font-weight:bold;'>⚠️</span>")
+    html = html.replace("Suggestion d'amélioration", "<span style='color:#007BFF; font-weight:bold;'>Suggestion d'amélioration</span>")
+    html = html.replace("Verbesserungsvorschlag", "<span style='color:#007BFF; font-weight:bold;'>Verbesserungsvorschlag</span>")
+    html = html.replace("Suggerimento di miglioramento", "<span style='color:#007BFF; font-weight:bold;'>Suggerimento di miglioramento</span>")
+    html = html.replace("**", "")
+    paragraphs = html.split("\n")
+    html_body = ""
+    for line in paragraphs:
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith(("🟢", "📊", "🔍", "🎯", "🤝", "💢", "🌱", "🚀", "➡️", "📝")):
+            html_body += f"<p style='margin:20px 0 6px 0; font-weight:bold;'>{line}</p>"
+        elif line.startswith("🎯 **Conclusions et perspectives**"):
+            html_body += "<hr style='margin:24px 0; border:none; border-top:2px solid #eee;'>"
+            html_body += f"<p style='margin:20px 0 6px 0; font-weight:bold;'>{line}</p>"
+        else:
+            html_body += f"<p style='margin:4px 0;'>{line}</p>"
+
+    if langue == "de":
+        intro = "<p>Hallo 👋<br>Hier ist dein persönliches Feedback zur Analyse deines Sprach-Pitchs :</p><br>"
+        signature = "<p style='color:gray;'>--<br>Speech Coach IA 🧠<br>Ein Werkzeug mit Herz – für Fundraiser und Trainer:innen.</p>"
+    elif langue == "it":
+        intro = "<p>Ciao 👋<br>Ecco il tuo feedback personalizzato sull’analisi del tuo pitch vocale :</p><br>"
+        signature = "<p style='color:gray;'>--<br>Speech Coach IA 🧠<br>Uno strumento creato con cura per dialogatori e formatori.</p>"
+    else:
+        intro = "<p>Bonjour 👋<br>Voici ton feedback personnalisé suite à l’analyse de ton pitch vocal :</p><br>"
+        signature = "<p style='color:gray;'>--<br>Speech Coach IA 🧠<br>Un outil conçu avec soin pour les dialogueurs et leurs formateurs.</p>"
+
+    if langue == "fr":
+        signature += "<p style='font-size:12px; color:#aaa;'>PS : Ce feedback a été généré avec amour, café ☕ et un soupçon de GPT par Joseph 💻</p>"
+
+    return f"""
+    <div style='font-family: Verdana, sans-serif; font-size: 15px; color:#000;'>
+        {intro}
+        {html_body}
+        {signature}
+    </div>
+    """
+
 # Fonctions utilitaires 
 
 def draw_gauge(score):
@@ -331,7 +374,7 @@ if user_email and audio_bytes and ong_choisie:
 
         # Envoi par email
         try:
-            html_feedback = feedback.replace("\n", "<br>")
+            html_feedback = format_feedback_as_html(feedback, langue_detectee)
             msg = MIMEText(html_feedback, "html", "utf-8")
             msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
             msg["From"] = st.secrets["email_user"]
