@@ -284,6 +284,7 @@ def interpret_note(score, langue):
 note = None  # 
 
 # Traitement
+# Traitement
 if user_email and audio_bytes and ong_choisie:
     st.success(t["messages"]["speech_ready"])
 
@@ -299,7 +300,6 @@ if user_email and audio_bytes and ong_choisie:
     st.success(t["messages"]["transcription_done"])
     langue_detectee = detect(transcript)
     st.info(f"{t['messages']['langue_detectee']} {langue_detectee.upper()}")
-
 
     # Prompt
     prompt_path = Path("prompts") / f"prompt_{langue_choisie}.txt"
@@ -335,58 +335,58 @@ if user_email and audio_bytes and ong_choisie:
     {transcript}
     """
 
+    with st.spinner(t["messages"]["generation_feedback"]):
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Tu es un coach bienveillant et structuré pour des ONG."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=1500
+        )
+        feedback = response.choices[0].message.content
 
-with st.spinner(t["messages"]["generation_feedback"]):
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Tu es un coach bienveillant et structuré pour des ONG."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.7,
-        max_tokens=1500
-    )
-    feedback = response.choices[0].message.content
+        if not feedback or len(feedback.strip()) == 0:
+            st.error("⚠️ Aucun feedback généré.")
+            st.stop()
 
-    if not feedback or len(feedback.strip()) == 0:
-        st.error("⚠️ Aucun feedback généré.")
-        st.stop()
+        match = re.search(r"(\d(?:\.\d)?)/10", feedback)
+        note = float(match.group(1)) if match else None
 
-    match = re.search(r"(\d(?:\.\d)?)/10", feedback)
-    note = float(match.group(1)) if match else None
-
-    html_feedback = format_feedback_as_html(feedback, langue_detectee)
-    st.markdown(html_feedback, unsafe_allow_html=True)
-
-if note:
-    st.markdown({
-        "fr": "### 🎯 Baromètre de performance",
-        "de": "### 🎯 Leistungsbarometer",
-        "it": "### 🎯 Barometro di performance"
-    }[langue_choisie])
-
-    draw_gauge(note)
-    st.markdown(f"**{interpret_note(note, langue_choisie)}**")
-
-    with st.expander({
-        "fr": "ℹ️ Que signifie le baromètre ?",
-        "de": "ℹ️ Was bedeutet das Barometer?",
-        "it": "ℹ️ Cosa indica il barometro?"
-    }[langue_choisie]):
-        st.markdown(barometre_legendes[langue_choisie])
-
-# ✅ Envoi de l’e-mail (en dehors du `if note`)
-    try:
         html_feedback = format_feedback_as_html(feedback, langue_detectee)
-        msg = MIMEText(html_feedback, "html", "utf-8")
-        msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
-        msg["From"] = st.secrets["email_user"]
-        msg["To"] = user_email
+        st.markdown(html_feedback, unsafe_allow_html=True)
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(st.secrets["email_user"], st.secrets["email_password"])
-        server.send_message(msg)
+        if note:
+            st.markdown({
+                "fr": "### 🎯 Baromètre de performance",
+                "de": "### 🎯 Leistungsbarometer",
+                "it": "### 🎯 Barometro di performance"
+            }[langue_choisie])
 
-    st.success(f"{t['messages']['feedback_envoye']} {user_email} !")
-except Exception as e:
-    st.error(f"❌ Erreur lors de l'envoi : {e}")
+            draw_gauge(note)
+            st.markdown(f"**{interpret_note(note, langue_choisie)}**")
+
+            with st.expander({
+                "fr": "ℹ️ Que signifie le baromètre ?",
+                "de": "ℹ️ Was bedeutet das Barometer?",
+                "it": "ℹ️ Cosa indica il barometro?"
+            }[langue_choisie]):
+                st.markdown(barometre_legendes[langue_choisie])
+
+        # ✅ Envoi email en dehors du `if note`
+        try:
+            html_feedback = format_feedback_as_html(feedback, langue_detectee)
+            msg = MIMEText(html_feedback, "html", "utf-8")
+            msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
+            msg["From"] = st.secrets["email_user"]
+            msg["To"] = user_email
+
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                server.login(st.secrets["email_user"], st.secrets["email_password"])
+                server.send_message(msg)
+
+            st.success(f"{t['messages']['feedback_envoye']} {user_email} !")
+        except Exception as e:
+            st.error(f"❌ Erreur lors de l'envoi : {e}")
+
