@@ -30,44 +30,52 @@ langue_choisie = st.selectbox(
 )
 
 # 🧾 Interface textes
+
 textes = {
-    "fr": {"titre": "🎤 Speech Coach IA",
+    "fr": {
+        "titre": "🎤 Speech Coach IA",
         "intro": "Bienvenue ! Upload ici un speech pour savoir s’il colle aux standards vus en formation.",
         "upload_label": "📁 Dépose ici ton fichier audio (MP3 ou WAV uniquement)",
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
         "transcription_label": "📝 Transcription générée :",
-        "ong_label": "📌 Sélectionne l’ONG concernée :"},
+        "ong_label": "📌 Sélectionne l’ONG concernée :",
         "messages": {
-        "speech_ready": "✅ Speech reçu et prêt à être analysé",
-        "transcription_done": "✅ Transcription terminée. Analyse en cours...",
-        "langue_detectee": "🗣️ Langue détectée :"
+            "speech_ready": "✅ Speech reçu et prêt à être analysé",
+            "transcription_done": "✅ Transcription terminée. Analyse en cours...",
+            "langue_detectee": "🗣️ Langue détectée :"
+        }
     },
-    "de": {"titre": "🎤 Speech Coach IA",
+    "de": {
+        "titre": "🎤 Speech Coach IA",
         "intro": "Willkommen! Lade hier deine Sprachaufnahme hoch, um ein Feedback zu erhalten.",
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
         "transcription_label": "📝 Transkription:",
-        "ong_label": "📌 Wähle die betroffene NGO aus:"},
+        "ong_label": "📌 Wähle die betroffene NGO aus:",
         "messages": {
-        "speech_ready": "✅ Speech empfangen und bereit zur Analyse",
-        "transcription_done": "✅ Transkription abgeschlossen. Analyse läuft...",
-        "langue_detectee": "🗣️ Erkannte Sprache:"
+            "speech_ready": "✅ Speech empfangen und bereit zur Analyse",
+            "transcription_done": "✅ Transkription abgeschlossen. Analyse läuft...",
+            "langue_detectee": "🗣️ Erkannte Sprache:"
+        }
     },
-    "it": { "titre": "🎤 Speech Coach IA",
+    "it": {
+        "titre": "🎤 Speech Coach IA",
         "intro": "Benvenuto! Carica qui il tuo speech per ricevere un feedback.",
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
         "transcription_label": "📝 Trascrizione generata:",
-        "ong_label": "📌 Seleziona l'ONG interessata:"}
+        "ong_label": "📌 Seleziona l'ONG interessata:",
         "messages": {
-        "speech_ready": "✅ Speech ricevuto e pronto per l'analisi",
-        "transcription_done": "✅ Trascrizione completata. Analisi in corso...",
-        "langue_detectee": "🗣️ Lingua rilevata:"
-    },
+            "speech_ready": "✅ Speech ricevuto e pronto per l'analisi",
+            "transcription_done": "✅ Trascrizione completata. Analisi in corso...",
+            "langue_detectee": "🗣️ Lingua rilevata:"
+        }
+    }
 }
+
 
 barometre_legendes = {
     "fr": """
