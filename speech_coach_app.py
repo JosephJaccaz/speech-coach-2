@@ -343,10 +343,6 @@ Explique ce que tu as identifié dans la transcription.
 {transcript}
 """
 
-# Affichage debug du prompt (non bloquant)
-with st.expander("🧪 Voir le prompt complet envoyé à l'IA"):
-    st.code(prompt)
-
 # En dehors de l’expander → lancement de l’analyse GPT
 with st.spinner(t["messages"]["generation_feedback"]):
     response = openai.chat.completions.create(
