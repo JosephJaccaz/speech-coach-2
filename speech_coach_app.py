@@ -367,7 +367,7 @@ if note:
     draw_gauge(note)
     st.markdown(f"**{interpret_note(note, langue_choisie)}**")
 
-        with st.expander({
+    with st.expander({
         "fr": "ℹ️ Que signifie le baromètre ?",
         "de": "ℹ️ Was bedeutet das Barometer?",
         "it": "ℹ️ Cosa indica il barometro?"
