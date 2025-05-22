@@ -281,3 +281,41 @@ if user_email and audio_bytes and ong_choisie:
 
 else:
     st.info("📥 Merci de remplir tous les champs pour lancer l’analyse.")
+
+# Affichage feedback et baromètre
+if note:
+    st.markdown({
+    "fr": "### 🎯 Baromètre de performance",
+    "de": "### 🎯 Leistungsbarometer",
+    "it": "### 🎯 Barometro di performance"
+}[langue_choisie])
+
+    draw_gauge(note)
+    st.markdown(f"**{interpret_note(note, langue_choisie)}**")
+
+    with st.expander({
+        "fr": "ℹ️ Que signifie le baromètre ?",
+        "de": "ℹ️ Was bedeutet das Barometer?",
+        "it": "ℹ️ Cosa indica il barometro?"
+    }[langue_choisie]):
+        st.markdown(barometre_legendes[langue_choisie])
+
+    st.markdown(feedback, unsafe_allow_html=True)
+
+
+    # Envoi par email
+    try:
+        html_feedback = format_feedback_as_html(feedback, langue_detectee)
+        msg = MIMEText(html_feedback, "html", "utf-8")
+        msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
+        msg["From"] = st.secrets["email_user"]
+        msg["To"] = user_email
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(st.secrets["email_user"], st.secrets["email_password"])
+            server.send_message(msg)
+
+        st.success(f"✅ Feedback envoyé automatiquement à {user_email} !")
+    except Exception as e:
+        st.error(f"❌ Erreur lors de l'envoi : {e}")
+
