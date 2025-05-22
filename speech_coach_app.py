@@ -276,8 +276,6 @@ if user_email and audio_bytes and ong_choisie:
         match = re.search(r"(\d(?:\.\d)?)/10", feedback)
         note = float(match.group(1)) if match else None
 
-        st.markdown(feedback)
-
     if note:
         st.markdown({
             "fr": "### 🎯 Baromètre de performance",
