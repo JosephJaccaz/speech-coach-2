@@ -281,9 +281,8 @@ def interpret_note(score, langue):
         else:
             return "⛔ Problématique – discours à retravailler profondément"
 
-note = None  # 
+note = None  
 
-# Traitement
 # Traitement
 if user_email and audio_bytes and ong_choisie:
     st.success(t["messages"]["speech_ready"])
