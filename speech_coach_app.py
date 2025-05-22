@@ -62,10 +62,29 @@ textes = {
 }
 
 barometre_legendes = {
-    "fr": "- 🟢 Excellent (9–10) ...",
-    "de": "- 🟢 Exzellent (9–10) ...",
-    "it": "- 🟢 Eccellente (9–10) ..."
+    "fr": """
+- 🟢 **Excellent (9–10)** : Alignement parfait avec la méthode d’adhésion – discours inspirant, clair et éthique.
+- 🟢 **Bon (7–8)** : Tu es sur la bonne voie – encore perfectible sur quelques points.
+- 🟠 **Moyen (5–6)** : Équilibre émotionnel fragile – attention à certaines maladresses.
+- 🔴 **Faible (3–4)** : Ton discours perd en impact – problème de ton ou de structure.
+- ⛔ **Problématique (1–2)** : Le discours doit être entièrement revu – manque d’adhésion sincère.
+    """,
+    "de": """
+- 🟢 **Exzellent (9–10)** : Perfekte Übereinstimmung mit dem Dialogkonzept – inspirierend, klar und ethisch.
+- 🟢 **Gut (7–8)** : Du bist auf dem richtigen Weg – kleine Verbesserungen sind noch möglich.
+- 🟠 **Mittel (5–6)** : Emotionale Balance instabil – einzelne Schwächen im Aufbau oder Ton.
+- 🔴 **Schwach (3–4)** : Der Pitch verliert an Wirkung – problematische Tonalität oder Struktur.
+- ⛔ **Problematisch (1–2)** : Muss vollständig überarbeitet werden – fehlende ehrliche Zustimmung.
+    """,
+    "it": """
+- 🟢 **Eccellente (9–10)** : Allineamento perfetto con il metodo di adesione – discorso chiaro, etico e coinvolgente.
+- 🟢 **Buono (7–8)** : Sei sulla buona strada – margine di miglioramento su alcuni punti.
+- 🟠 **Medio (5–6)** : Equilibrio emotivo fragile – attenzione a tono e costruzione.
+- 🔴 **Debole (3–4)** : Il discorso perde impatto – problemi di tono o struttura.
+- ⛔ **Problema (1–2)** : Va completamente rivisto – manca l’adesione sincera.
+    """
 }
+
 
 t = textes[langue_choisie]
 
@@ -87,6 +106,118 @@ audio_bytes = audio_file.read() if audio_file else None
 st.markdown(t["info_format"])
 
 openai.api_key = st.secrets["openai_key"]
+
+def draw_gauge(score):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    fig, ax = plt.subplots(figsize=(5, 1.8), dpi=160, subplot_kw={'projection': 'polar'})
+
+    # Mettre 0 à gauche (horizontal) et rotation antihoraire
+    ax.set_theta_zero_location('W')  # 0° : Bas
+    ax.set_theta_direction(-1)
+
+    # Définition des zones
+    zones = [
+        (0, 2, '#8B0000'),     # Rouge foncé
+        (2, 4, '#FF4500'),     # Orange vif
+        (4, 6, '#FFA500'),     # Orange clair
+        (6, 8, '#ADFF2F'),     # Vert clair
+        (8, 10, '#228B22')     # Vert foncé
+    ]
+
+    for start, end, color in zones:
+        theta1 = np.interp(start, [0, 10], [0, np.pi])
+        theta2 = np.interp(end, [0, 10], [0, np.pi])
+        ax.barh(
+            y=1,
+            width=theta2 - theta1,
+            left=theta1,
+            height=0.35,
+            color=color,
+            edgecolor='white',
+            linewidth=1.5
+        )
+
+    # Aiguille
+    angle = np.interp(score, [0, 10], [0, np.pi])
+    ax.plot([angle, angle], [0, 1], color='black', lw=3)
+    ax.plot(angle, 1, 'o', color='black', markersize=6)
+
+    # Nettoyage du style
+    ax.set_ylim(0, 1.1)
+    ax.axis('off')
+    plt.subplots_adjust(left=0.05, right=0.95, top=1.05, bottom=-10)
+    fig.patch.set_alpha(0)  # Fond transparent (utile si tu veux l'intégrer avec d'autres éléments visuels)
+
+
+    from PIL import Image, ImageChops
+
+    # 1. Sauvegarde le graphique dans un buffer mémoire
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", bbox_inches="tight", pad_inches=0, transparent=True)
+    plt.close(fig)  # nettoyage mémoire
+    buf.seek(0)
+    img = Image.open(buf)
+
+    # 2. Crop automatique du fond blanc transparent
+    bg = Image.new(img.mode, img.size, (255, 255, 255, 0))  # fond transparent
+    diff = ImageChops.difference(img, bg)
+    bbox = diff.getbbox()
+
+    if bbox:
+        img_cropped = img.crop(bbox)
+    else:
+        img_cropped = img  # fallback : pas de différence détectée
+
+    # 3. Affichage sans le moindre bord inutile
+    st.image(img_cropped)
+
+
+
+def interpret_note(score, langue):
+    if langue == "de":
+        # traductions en allemand ici
+        if score >= 9:
+            return "🟢 Exzellent – vollständig im Einklang mit dem Dialogkonzept"
+        elif score >= 7:
+            return "🟢 Gut – kleinere Verbesserungen möglich"
+        elif score >= 5:
+            return "🟠 Mittel – emotionale Balance fragil"
+        elif score >= 3:
+            return "🔴 Schwach – auf Ton und Inhalt achten"
+        else:
+            return "⛔ Problematisch – muss grundlegend überarbeitet werden"
+    elif langue == "it":
+        # traductions en italien ici
+        if score >= 9:
+            return "🟢 Eccellente – perfettamente in linea con il metodo di adesione"
+        elif score >= 7:
+            return "🟢 Buono – migliorabile in alcuni punti"
+        elif score >= 5:
+            return "🟠 Medio – equilibrio emotivo fragile"
+        elif score >= 3:
+            return "🔴 Debole – attenzione al tono e al messaggio"
+        else:
+            return "⛔ Problema – discorso da rivedere profondamente"
+    else:
+        # français par défaut
+        if score >= 9:
+            return "🟢 Excellent – alignement parfait avec la méthode d’adhésion"
+        elif score >= 7:
+            return "🟢 Bon – encore perfectible sur quelques points"
+        elif score >= 5:
+            return "🟠 Moyen – équilibre émotionnel fragile"
+        elif score >= 3:
+            return "🔴 Faible – attention à la tonalité et au discours"
+        else:
+            return "⛔ Problématique – discours à retravailler profondément"
+
+
+note = None
+
+
+if user_email and audio_bytes is not None:
 
 # Traitement
 if user_email and audio_bytes and ong_choisie:
