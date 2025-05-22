@@ -43,7 +43,10 @@ textes = {
         "messages": {
             "speech_ready": "✅ Speech reçu et prêt à être analysé",
             "transcription_done": "✅ Transcription terminée. Analyse en cours...",
-            "langue_detectee": "🗣️ Langue détectée :"
+            "langue_detectee": "🗣️ Langue détectée :",
+            "transcription_spinner": "⏳ Transcription en cours...",
+            "generation_feedback": "💬 Génération du feedback pédagogique...",
+            "feedback_envoye": "✅ Feedback envoyé automatiquement à"
         }
     },
     "de": {
@@ -57,7 +60,10 @@ textes = {
         "messages": {
             "speech_ready": "✅ Speech empfangen und bereit zur Analyse",
             "transcription_done": "✅ Transkription abgeschlossen. Analyse läuft...",
-            "langue_detectee": "🗣️ Erkannte Sprache:"
+            "langue_detectee": "🗣️ Erkannte Sprache:",
+            "transcription_spinner": "⏳ Transkription läuft...",
+            "generation_feedback": "💬 Generierung des pädagogischen Feedbacks...",
+            "feedback_envoye": "✅ Feedback wurde automatisch gesendet an"
         }
     },
     "it": {
@@ -71,7 +77,10 @@ textes = {
         "messages": {
             "speech_ready": "✅ Speech ricevuto e pronto per l'analisi",
             "transcription_done": "✅ Trascrizione completata. Analisi in corso...",
-            "langue_detectee": "🗣️ Lingua rilevata:"
+            "langue_detectee": "🗣️ Lingua rilevata:",
+            "transcription_spinner": "⏳ Trascrizione in corso...",
+            "generation_feedback": "💬 Generazione del feedback pedagogico...",
+            "feedback_envoye": "✅ Feedback inviato automaticamente a"
         }
     }
 }
@@ -236,7 +245,7 @@ note = None  #
 if user_email and audio_bytes and ong_choisie:
     st.success(t["messages"]["speech_ready"])
 
-    with st.spinner("⏳ Transcription en cours avec Whisper..."):
+    with st.spinner(t["messages"]["transcription_spinner"]):
         audio_io = io.BytesIO(audio_bytes)
         audio_io.name = "speech.wav"
         transcript = openai.audio.transcriptions.create(
@@ -284,7 +293,8 @@ if user_email and audio_bytes and ong_choisie:
 {transcript}
 """
 
-    with st.spinner("💬 Génération du feedback pédagogique..."):
+    with st.spinner(t["messages"]["generation_feedback"]):
+
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -331,6 +341,6 @@ if user_email and audio_bytes and ong_choisie:
                 server.login(st.secrets["email_user"], st.secrets["email_password"])
                 server.send_message(msg)
 
-            st.success(f"✅ Feedback envoyé automatiquement à {user_email} !")
+            st.success(f"{t['messages']['feedback_envoye']} {user_email} !")
         except Exception as e:
             st.error(f"❌ Erreur lors de l'envoi : {e}")
