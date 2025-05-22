@@ -1,4 +1,3 @@
-
 import streamlit as st
 import openai
 import smtplib
@@ -370,7 +369,8 @@ if user_email and audio_bytes and ong_choisie:
         }[langue_choisie]):
             st.markdown(barometre_legendes[langue_choisie])
 
-        st.markdown(feedback, unsafe_allow_html=True)
+        html_feedback = format_feedback_as_html(feedback, langue_detectee)
+        st.markdown(html_feedback, unsafe_allow_html=True)
 
         # Envoi par email
         try:
