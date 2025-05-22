@@ -374,18 +374,18 @@ if note:
     }[langue_choisie]):
         st.markdown(barometre_legendes[langue_choisie])
 
-        # Envoi par email
-    try:
-        html_feedback = format_feedback_as_html(feedback, langue_detectee)
-        msg = MIMEText(html_feedback, "html", "utf-8")
-        msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
-        msg["From"] = st.secrets["email_user"]
-        msg["To"] = user_email
+# ✅ Envoi de l’e-mail (en dehors du `if note`)
+try:
+    html_feedback = format_feedback_as_html(feedback, langue_detectee)
+    msg = MIMEText(html_feedback, "html", "utf-8")
+    msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
+    msg["From"] = st.secrets["email_user"]
+    msg["To"] = user_email
 
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(st.secrets["email_user"], st.secrets["email_password"])
-            server.send_message(msg)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(st.secrets["email_user"], st.secrets["email_password"])
+        server.send_message(msg)
 
-        st.success(f"{t['messages']['feedback_envoye']} {user_email} !")
-    except Exception as e:
-        st.error(f"❌ Erreur lors de l'envoi : {e}")
+    st.success(f"{t['messages']['feedback_envoye']} {user_email} !")
+except Exception as e:
+    st.error(f"❌ Erreur lors de l'envoi : {e}")
