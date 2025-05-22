@@ -354,9 +354,6 @@ if user_email and audio_bytes and ong_choisie:
         match = re.search(r"(\d(?:\.\d)?)/10", feedback)
         note = float(match.group(1)) if match else None
 
-        html_feedback = format_feedback_as_html(feedback, langue_detectee)
-        st.markdown(html_feedback, unsafe_allow_html=True)
-
         if note:
             st.markdown({
                 "fr": "### 🎯 Baromètre de performance",
@@ -373,6 +370,10 @@ if user_email and audio_bytes and ong_choisie:
                 "it": "ℹ️ Cosa indica il barometro?"
             }[langue_choisie]):
                 st.markdown(barometre_legendes[langue_choisie])
+
+        html_feedback = format_feedback_as_html(feedback, langue_detectee)
+        st.markdown(html_feedback, unsafe_allow_html=True)
+
 
         # ✅ Envoi email en dehors du `if note`
         try:
