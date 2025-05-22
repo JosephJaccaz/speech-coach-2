@@ -356,8 +356,8 @@ with st.spinner(t["messages"]["generation_feedback"]):
 match = re.search(r"(\d(?:\.\d)?)/10", feedback)
 note = float(match.group(1)) if match else None
 
-    html_feedback = format_feedback_as_html(feedback, langue_detectee)
-    st.markdown(html_feedback, unsafe_allow_html=True)
+html_feedback = format_feedback_as_html(feedback, langue_detectee)
+st.markdown(html_feedback, unsafe_allow_html=True)
 
 
     if note:
