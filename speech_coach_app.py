@@ -133,7 +133,7 @@ if user_email and audio_bytes and ong_choisie:
 
 {ong_context}
 
-"""{transcript}"""
+{transcript}
 """
 
     with st.spinner("💬 Génération du feedback pédagogique..."):
