@@ -1,0 +1,21 @@
+{
+  "fr": {
+    "slogan": "Chaque enfant compte",
+    "pitch_reference": "Bonjour ! Tu connais l’UNICEF ? On agit pour chaque enfant...",
+    "redflags": ["don obligatoire", "sauver tous les enfants"]
+  },
+  "de": {
+    "slogan": "Jedes Kind zählt",
+    "pitch_reference": "Hallo! Kennst du UNICEF? Wir helfen weltweit Kindern...",
+    "redflags": ["verpflichtend", "alle Kinder retten"]
+  },
+  "it": {
+    "slogan": "Ogni bambino conta",
+    "pitch_reference": "Ciao! Conosci UNICEF? Agiamo in tutto il mondo per i bambini...",
+    "redflags": ["obbligatorio", "salvare tutti i bambini"]
+  },
+  "stats_importantes": {
+    "enfants_aides": "plus de 190 pays",
+    "budget": "7 milliards $"
+  }
+}
