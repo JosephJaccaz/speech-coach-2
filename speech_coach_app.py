@@ -353,8 +353,8 @@ with st.spinner(t["messages"]["generation_feedback"]):
         st.stop()
 
         # Extraire la note
-    match = re.search(r"(\d(?:\.\d)?)/10", feedback)
-    note = float(match.group(1)) if match else None
+match = re.search(r"(\d(?:\.\d)?)/10", feedback)
+note = float(match.group(1)) if match else None
 
     html_feedback = format_feedback_as_html(feedback, langue_detectee)
     st.markdown(html_feedback, unsafe_allow_html=True)
@@ -376,9 +376,6 @@ with st.spinner(t["messages"]["generation_feedback"]):
             "it": "ℹ️ Cosa indica il barometro?"
         }[langue_choisie]):
             st.markdown(barometre_legendes[langue_choisie])
-
-        html_feedback = format_feedback_as_html(feedback, langue_detectee)
-        st.markdown(html_feedback, unsafe_allow_html=True)
 
         # Envoi par email
         try:
