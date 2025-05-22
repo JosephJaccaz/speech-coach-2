@@ -12,7 +12,6 @@ from pathlib import Path
 import json
 from PIL import Image, ImageChops
 
-
 st.set_page_config(page_title="Speech Coach IA", page_icon="🎤")
 
 # Logo
@@ -32,33 +31,27 @@ langue_choisie = st.selectbox(
 
 # 🧾 Interface textes
 textes = {
-    "fr": {
-        "titre": "🎤 Speech Coach IA",
+    "fr": {"titre": "🎤 Speech Coach IA",
         "intro": "Bienvenue ! Upload ici un speech pour savoir s’il colle aux standards vus en formation.",
         "upload_label": "📁 Dépose ici ton fichier audio (MP3 ou WAV uniquement)",
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
         "transcription_label": "📝 Transcription générée :",
-        "ong_label": "📌 Sélectionne l’ONG concernée :"
-    },
-    "de": {
-        "titre": "🎤 Speech Coach IA",
+        "ong_label": "📌 Sélectionne l’ONG concernée :"}, 
+    "de": {"titre": "🎤 Speech Coach IA",
         "intro": "Willkommen! Lade hier deine Sprachaufnahme hoch, um ein Feedback zu erhalten.",
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
         "transcription_label": "📝 Transkription:",
-        "ong_label": "📌 Wähle die betroffene NGO aus:"
-    },
-    "it": {
-        "titre": "🎤 Speech Coach IA",
+        "ong_label": "📌 Wähle die betroffene NGO aus:"},
+    "it": { "titre": "🎤 Speech Coach IA",
         "intro": "Benvenuto! Carica qui il tuo speech per ricevere un feedback.",
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
         "transcription_label": "📝 Trascrizione generata:",
-        "ong_label": "📌 Seleziona l'ONG interessata:"
-    }
+        "ong_label": "📌 Seleziona l'ONG interessata:"}
 }
 
 barometre_legendes = {
@@ -85,7 +78,6 @@ barometre_legendes = {
     """
 }
 
-
 t = textes[langue_choisie]
 
 # 🎛 Interface utilisateur
@@ -106,6 +98,8 @@ audio_bytes = audio_file.read() if audio_file else None
 st.markdown(t["info_format"])
 
 openai.api_key = st.secrets["openai_key"]
+
+# Fonctions utilitaires 
 
 def draw_gauge(score):
     import matplotlib.pyplot as plt
@@ -213,7 +207,7 @@ def interpret_note(score, langue):
         else:
             return "⛔ Problématique – discours à retravailler profondément"
 
-
+note = None  # 
 
 # Traitement
 if user_email and audio_bytes and ong_choisie:
@@ -277,45 +271,44 @@ if user_email and audio_bytes and ong_choisie:
             max_tokens=1500
         )
         feedback = response.choices[0].message.content
+
+        # Extraire la note
+        match = re.search(r"(\d(?:\.\d)?)/10", feedback)
+        note = float(match.group(1)) if match else None
+
         st.markdown(feedback)
 
-else:
-    st.info("📥 Merci de remplir tous les champs pour lancer l’analyse.")
+    if note:
+        st.markdown({
+            "fr": "### 🎯 Baromètre de performance",
+            "de": "### 🎯 Leistungsbarometer",
+            "it": "### 🎯 Barometro di performance"
+        }[langue_choisie])
 
-# Affichage feedback et baromètre
-if note:
-    st.markdown({
-    "fr": "### 🎯 Baromètre de performance",
-    "de": "### 🎯 Leistungsbarometer",
-    "it": "### 🎯 Barometro di performance"
-}[langue_choisie])
+        draw_gauge(note)
+        st.markdown(f"**{interpret_note(note, langue_choisie)}**")
 
-    draw_gauge(note)
-    st.markdown(f"**{interpret_note(note, langue_choisie)}**")
+        with st.expander({
+            "fr": "ℹ️ Que signifie le baromètre ?",
+            "de": "ℹ️ Was bedeutet das Barometer?",
+            "it": "ℹ️ Cosa indica il barometro?"
+        }[langue_choisie]):
+            st.markdown(barometre_legendes[langue_choisie])
 
-    with st.expander({
-        "fr": "ℹ️ Que signifie le baromètre ?",
-        "de": "ℹ️ Was bedeutet das Barometer?",
-        "it": "ℹ️ Cosa indica il barometro?"
-    }[langue_choisie]):
-        st.markdown(barometre_legendes[langue_choisie])
+        st.markdown(feedback, unsafe_allow_html=True)
 
-    st.markdown(feedback, unsafe_allow_html=True)
+        # Envoi par email
+        try:
+            html_feedback = feedback.replace("\n", "<br>")
+            msg = MIMEText(html_feedback, "html", "utf-8")
+            msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
+            msg["From"] = st.secrets["email_user"]
+            msg["To"] = user_email
 
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                server.login(st.secrets["email_user"], st.secrets["email_password"])
+                server.send_message(msg)
 
-    # Envoi par email
-    try:
-        html_feedback = format_feedback_as_html(feedback, langue_detectee)
-        msg = MIMEText(html_feedback, "html", "utf-8")
-        msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
-        msg["From"] = st.secrets["email_user"]
-        msg["To"] = user_email
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(st.secrets["email_user"], st.secrets["email_password"])
-            server.send_message(msg)
-
-        st.success(f"✅ Feedback envoyé automatiquement à {user_email} !")
-    except Exception as e:
-        st.error(f"❌ Erreur lors de l'envoi : {e}")
-
+            st.success(f"✅ Feedback envoyé automatiquement à {user_email} !")
+        except Exception as e:
+            st.error(f"❌ Erreur lors de l'envoi : {e}")
