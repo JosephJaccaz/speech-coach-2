@@ -327,7 +327,7 @@ if user_email and audio_bytes and ong_choisie:
 - Pitch modèle : {pitch_model}
 - Statistiques : {stats}
 """
-verif_bloc = f"""
+    verif_bloc = f"""
 ⚠️ Le discours est censé concerner l'ONG suivante : {ong_choisie}.
 Si tu détectes que ce n’est **pas le cas** (par exemple : présence du mot Amnesty, Greenpeace, MSF...), 
 commence ta réponse par un **AVERTISSEMENT CLAIR** et **n’analyse pas** le pitch. 
