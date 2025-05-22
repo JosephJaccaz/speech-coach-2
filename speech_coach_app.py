@@ -37,7 +37,12 @@ textes = {
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
         "transcription_label": "📝 Transcription générée :",
-        "ong_label": "📌 Sélectionne l’ONG concernée :"}, 
+        "ong_label": "📌 Sélectionne l’ONG concernée :"},
+        "messages": {
+        "speech_ready": "✅ Speech reçu et prêt à être analysé",
+        "transcription_done": "✅ Transcription terminée. Analyse en cours...",
+        "langue_detectee": "🗣️ Langue détectée :"
+    },
     "de": {"titre": "🎤 Speech Coach IA",
         "intro": "Willkommen! Lade hier deine Sprachaufnahme hoch, um ein Feedback zu erhalten.",
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
@@ -45,6 +50,11 @@ textes = {
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
         "transcription_label": "📝 Transkription:",
         "ong_label": "📌 Wähle die betroffene NGO aus:"},
+        "messages": {
+        "speech_ready": "✅ Speech empfangen und bereit zur Analyse",
+        "transcription_done": "✅ Transkription abgeschlossen. Analyse läuft...",
+        "langue_detectee": "🗣️ Erkannte Sprache:"
+    },
     "it": { "titre": "🎤 Speech Coach IA",
         "intro": "Benvenuto! Carica qui il tuo speech per ricevere un feedback.",
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
@@ -52,6 +62,11 @@ textes = {
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
         "transcription_label": "📝 Trascrizione generata:",
         "ong_label": "📌 Seleziona l'ONG interessata:"}
+        "messages": {
+        "speech_ready": "✅ Speech ricevuto e pronto per l'analisi",
+        "transcription_done": "✅ Trascrizione completata. Analisi in corso...",
+        "langue_detectee": "🗣️ Lingua rilevata:"
+    },
 }
 
 barometre_legendes = {
@@ -211,7 +226,7 @@ note = None  #
 
 # Traitement
 if user_email and audio_bytes and ong_choisie:
-    st.success("✅ Speech reçu et prêt à être analysé")
+    st.success(t["messages"]["speech_ready"])
 
     with st.spinner("⏳ Transcription en cours avec Whisper..."):
         audio_io = io.BytesIO(audio_bytes)
@@ -222,9 +237,10 @@ if user_email and audio_bytes and ong_choisie:
             response_format="text"
         )
 
-    st.success("✅ Transcription terminée. Analyse en cours...")
+    st.success(t["messages"]["transcription_done"])
     langue_detectee = detect(transcript)
-    st.info(f"🗣️ Langue détectée : {langue_detectee.upper()}")
+    st.info(f"{t['messages']['langue_detectee']} {langue_detectee.upper()}")
+
 
     # Prompt
     prompt_path = Path("prompts") / f"prompt_{langue_choisie}.txt"
