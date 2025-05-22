@@ -39,6 +39,7 @@ textes = {
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
         "transcription_label": "📝 Transcription générée :"
+        "ong_label": "📌 Sélectionne l’ONG concernée :"
     },
     "de": {
         "titre": "🎤 Speech Coach IA",
@@ -47,6 +48,7 @@ textes = {
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
         "transcription_label": "📝 Transkription:"
+        "ong_label": "📌 Wähle die betroffene NGO aus:"
     },
     "it": {
         "titre": "🎤 Speech Coach IA",
@@ -55,6 +57,7 @@ textes = {
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
         "transcription_label": "📝 Trascrizione generata:"
+        "ong_label": "📌 Seleziona l'ONG interessata:"
     }
 }
 
@@ -76,7 +79,7 @@ ong_dir = Path("data/organisations")
 ong_files = list(ong_dir.glob("*.json"))
 ong_names = [f.stem.replace("_", " ").title() for f in ong_files]
 ong_map = dict(zip(ong_names, ong_files))
-ong_choisie = st.selectbox("📌 Sélectionne l’ONG concernée :", ong_names)
+ong_choisie = st.selectbox(t["ong_label"], ong_names)
 
 audio_file = st.file_uploader(t["upload_label"], type=["mp3", "wav"])
 audio_bytes = audio_file.read() if audio_file else None
