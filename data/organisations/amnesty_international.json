@@ -1,0 +1,53 @@
+{
+  "fr": {
+    "slogan": "Agir pour les droits humains, partout et pour tous.",
+    "redflags": [
+      "Mention d'une autre ONG (ex. MSF, Greenpeace)",
+      "Chiffres exagérés ou invérifiables",
+      "Tonalité culpabilisante ou alarmiste",
+      "Absence de lien clair avec les missions d’Amnesty"
+    ],
+    "pitch_reference": "Amnesty International défend les droits humains dans le monde entier. Grâce à votre soutien, nous luttons contre les injustices, protégeons les personnes persécutées et faisons pression pour des changements durables.",
+    "stats_importantes": {
+      "nombre_pays": 155,
+      "executions_2024": 1518,
+      "pays_principaux_executions": ["Iran", "Arabie saoudite", "Irak"],
+      "deplaces_gaza": 1900000,
+      "victimes_gaza": 50500
+    }
+  },
+  "de": {
+    "slogan": "Für Menschenrechte – überall und für alle.",
+    "redflags": [
+      "Erwähnung einer anderen NGO (z. B. MSF, Greenpeace)",
+      "Übertriebene oder nicht überprüfbare Zahlen",
+      "Schuldzuweisender oder alarmistischer Ton",
+      "Kein klarer Bezug zu den Zielen von Amnesty"
+    ],
+    "pitch_reference": "Amnesty International setzt sich weltweit für die Menschenrechte ein. Mit Ihrer Unterstützung bekämpfen wir Ungerechtigkeiten, schützen Verfolgte und setzen uns für dauerhafte Veränderungen ein.",
+    "stats_importantes": {
+      "anzahl_laender": 155,
+      "hinrichtungen_2024": 1518,
+      "hauptlaender_hinrichtungen": ["Iran", "Saudi-Arabien", "Irak"],
+      "vertriebene_gaza": 1900000,
+      "opfer_gaza": 50500
+    }
+  },
+  "it": {
+    "slogan": "Agire per i diritti umani, ovunque e per tutti.",
+    "redflags": [
+      "Menzione di un'altra ONG (es. MSF, Greenpeace)",
+      "Dati esagerati o non verificabili",
+      "Tono colpevolizzante o allarmistico",
+      "Assenza di un chiaro collegamento con le missioni di Amnesty"
+    ],
+    "pitch_reference": "Amnesty International difende i diritti umani in tutto il mondo. Con il tuo sostegno, combattiamo le ingiustizie, proteggiamo le persone perseguitate e facciamo pressione per cambiamenti duraturi.",
+    "stats_importantes": {
+      "numero_paesi": 155,
+      "esecuzioni_2024": 1518,
+      "principali_paesi_esecuzioni": ["Iran", "Arabia Saudita", "Iraq"],
+      "sfollati_gaza": 1900000,
+      "vittime_gaza": 50500
+    }
+  }
+}
