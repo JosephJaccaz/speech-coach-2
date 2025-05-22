@@ -377,11 +377,11 @@ if note:
 
 # ✅ Envoi de l’e-mail (en dehors du `if note`)
     try:
-    html_feedback = format_feedback_as_html(feedback, langue_detectee)
-    msg = MIMEText(html_feedback, "html", "utf-8")
-    msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
-    msg["From"] = st.secrets["email_user"]
-    msg["To"] = user_email
+        html_feedback = format_feedback_as_html(feedback, langue_detectee)
+        msg = MIMEText(html_feedback, "html", "utf-8")
+        msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
+        msg["From"] = st.secrets["email_user"]
+        msg["To"] = user_email
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
         server.login(st.secrets["email_user"], st.secrets["email_password"])
