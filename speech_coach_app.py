@@ -336,7 +336,7 @@ if user_email and audio_bytes and ong_choisie:
 
     with st.spinner(t["messages"]["generation_feedback"]):
         response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "Tu es un coach bienveillant et structuré pour des ONG."},
                 {"role": "user", "content": prompt}
