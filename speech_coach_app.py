@@ -335,7 +335,6 @@ prompt = f"""{prompt_intro}
 {transcript}
 """
 
-# En dehors de l’expander → lancement de l’analyse GPT
 with st.spinner(t["messages"]["generation_feedback"]):
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -349,16 +348,14 @@ with st.spinner(t["messages"]["generation_feedback"]):
     feedback = response.choices[0].message.content
 
     if not feedback or len(feedback.strip()) == 0:
-        st.error("⚠️ Aucun feedback généré. Vérifie si la transcription est vide ou si le prompt est mal construit.")
+        st.error("⚠️ Aucun feedback généré.")
         st.stop()
 
-        # Extraire la note
     match = re.search(r"(\d(?:\.\d)?)/10", feedback)
     note = float(match.group(1)) if match else None
 
-html_feedback = format_feedback_as_html(feedback, langue_detectee)
-st.markdown(html_feedback, unsafe_allow_html=True)
-
+    html_feedback = format_feedback_as_html(feedback, langue_detectee)
+    st.markdown(html_feedback, unsafe_allow_html=True)
 
 if note:
     st.markdown({
