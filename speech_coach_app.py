@@ -343,27 +343,26 @@ Explique ce que tu as identifié dans la transcription.
 {transcript}
 """
 
+# Affichage debug du prompt (non bloquant)
 with st.expander("🧪 Voir le prompt complet envoyé à l'IA"):
     st.code(prompt)
 
-    
-    with st.spinner(t["messages"]["generation_feedback"]):
+# En dehors de l’expander → lancement de l’analyse GPT
+with st.spinner(t["messages"]["generation_feedback"]):
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Tu es un coach bienveillant et structuré pour des ONG."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.7,
+        max_tokens=1500
+    )
+    feedback = response.choices[0].message.content
 
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Tu es un coach bienveillant et structuré pour des ONG."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7,
-            max_tokens=1500
-        )
-        feedback = response.choices[0].message.content
-
-        if not feedback or len(feedback.strip()) == 0:
-    st.error("⚠️ Aucun feedback généré. Vérifie si la transcription est vide ou si le prompt est mal construit.")
-    st.stop()
-
+    if not feedback or len(feedback.strip()) == 0:
+        st.error("⚠️ Aucun feedback généré. Vérifie si la transcription est vide ou si le prompt est mal construit.")
+        st.stop()
 
         # Extraire la note
         match = re.search(r"(\d(?:\.\d)?)/10", feedback)
