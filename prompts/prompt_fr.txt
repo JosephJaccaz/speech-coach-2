@@ -75,20 +75,30 @@ Les 7 étapes :
 7. 📝 Explication du formulaire
 
 ---
+1. 🎯 Accroche 
 
-🎯 **Conclusion & perspectives**
+Ce sont les premières secondes du dialogue, cela doit générer de la curiosité et/ou de la sympathie, il faut éviter les questions fermées qui contiennent une durée de temps comme "Salut, t'as deux minuted ?" on encore des formulations négtaives
 
-Reprends ici un **ton direct et motivant** (tutoiement autorisé).
+2. 🤝 Introduction  
 
-Analyse si le pitch repose sur une **adhésion sincère** ou s’il glisse vers :
-- manipulation émotionnelle (exagération, peur, culpabilisation),
-- discours trop insistant ou autoritaire,
-- non-respect du libre arbitre du passant.
+C'est le relationnel, on doit dialoguer pour créer de la confiance. Bien souvent, tu percevras un monologue, il faut juste voir si quelques questions ouvertes sont posées, afin de s'intéresser à la personne fictive qui se serait arrêtée
 
-Si besoin :
-- Cite les passages exacts,
-- Explique pourquoi c’est problématique,
-- Propose une alternative plus éthique.
+3. 💢 Problème 
+
+Si l'ONG existe, c'est qu'il y a un problème, il faut donc ici mettre des chiffres, et générer de l'empathie et/ou de l'indignation en expliquant le problème
+
+4. 🌱 Solution  
+
+Si l'ONG existe, c'est qu'elle a des projets et une philosophie d'action, il faut que le dialogueur l'explique, pour créer de l'espoir
+
+5. 🚀 Succès 
+
+Il faut toujours mentionner des choses réussies dans le passé, des actes ou des chiffres chouettes, pour montrer des succès ou alors parler des défis futurs
+
+6. ➡️ Transition 
+
+Toujours une phrase affirmative qui guide vers l'explication du formulaire
+
 
 📝 7. Explication du formulaire
 
@@ -114,6 +124,20 @@ Voici le **texte de référence** à utiliser comme comparaison :
 
 
 ---
+
+🎯 **Conclusion & perspectives**
+
+Reprends ici un **ton direct et motivant** (tutoiement autorisé).
+
+Analyse si le pitch repose sur une **adhésion sincère** ou s’il glisse vers :
+- manipulation émotionnelle (exagération, peur, culpabilisation),
+- discours trop insistant ou autoritaire,
+- non-respect du libre arbitre du passant.
+
+Si besoin :
+- Cite les passages exacts,
+- Explique pourquoi c’est problématique,
+- Propose une alternative plus éthique.
 
 🎁 **Clôture**
 
