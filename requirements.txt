@@ -1,0 +1,10 @@
+streamlit
+openai
+langdetect
+pydub
+ffmpeg
+matplotlib
+numpy
+soundfile
+streamlit-webrtc
+aiortc
