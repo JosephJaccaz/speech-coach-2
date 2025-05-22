@@ -343,6 +343,10 @@ Explique ce que tu as identifié dans la transcription.
 {transcript}
 """
 
+with st.expander("🧪 Voir le prompt complet envoyé à l'IA"):
+    st.code(prompt)
+
+    
     with st.spinner(t["messages"]["generation_feedback"]):
 
         response = openai.chat.completions.create(
@@ -355,6 +359,11 @@ Explique ce que tu as identifié dans la transcription.
             max_tokens=1500
         )
         feedback = response.choices[0].message.content
+
+        if not feedback or len(feedback.strip()) == 0:
+    st.error("⚠️ Aucun feedback généré. Vérifie si la transcription est vide ou si le prompt est mal construit.")
+    st.stop()
+
 
         # Extraire la note
         match = re.search(r"(\d(?:\.\d)?)/10", feedback)
