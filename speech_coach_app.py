@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from langdetect import detect
 from email.mime.text import MIMEText
+from pathlib import Path
+import json
+
+
 
 
 
@@ -92,6 +96,16 @@ t = textes[langue_choisie]
 st.title(t["titre"])
 st.write(t["intro"])
 user_email = st.text_input(t["email_label"], key="email")
+
+# Liste des ONG disponibles
+ong_dir = Path("data/organisations")
+ong_files = list(ong_dir.glob("*.json"))
+ong_names = [f.stem.replace("_", " ").title() for f in ong_files]
+ong_map = dict(zip(ong_names, ong_files))
+
+# Sélection de l'ONG
+ong_choisie = st.selectbox("📌 Sélectionne l’ONG concernée :", ong_names)
+
 
 audio_file = st.file_uploader(t["upload_label"], type=["mp3", "wav"], key="audio")
 audio_bytes = None
@@ -276,74 +290,7 @@ if user_email and audio_bytes is not None:
 
     # Définir le prompt selon la langue choisie
     if langue_choisie == "fr":
-        prompt_intro = """Tu es un coach expert en rhétorique, spécialisé dans la formation de dialogueurs pour des ONG.
-
-Tu t'adresses ici directement à un·e dialogueur·euse qui vient d'enregistrer un **speech** d'entraînement. Ton rôle est de lui faire un retour complet, clair et motivant.
-Tu dois évaluer à la fois la qualité du contenu, la structure du discours et l’émotion transmise dans la voix.
-
-Avant de conclure ton retour, veille à ce que l’analyse respecte ces points :
-
-- Si le pitch contient des **chiffres, données chiffrées ou résultats quantitatifs**, vérifie qu’ils sont **présentés de manière crédible et précise**.
-- Si un chiffre semble **exagéré, invérifiable ou manipulatoire**, signale-le comme étant à **risque de “bullshit”**.
-- Tu ne dois **jamais inventer de chiffres ou d'exemples chiffrés** dans ton propre feedback.
-- Encourage à utiliser une **formulation plus qualitative ou nuancée** à la place de tout chiffre douteux.
-
-Sois rigoureux dans ce point. Le but est d’éviter tout usage maladroit ou imprécis de données dans un discours d’adhésion.
-
-Tu dois être exigeant, pour que la personne qui t'envoie un speech ait un jugement honnête. Si c'est pourri ou qu'une partie du speech est absente, tu dois le dire et ce n'est pas okay
-Ta réponse doit être structurée **exactement** selon ce plan :
-
----
-
-🟢 **Résumé global**
-
-Commence par un petit résumé général de ton speech (2 à 3 phrases maximum). L’idée est de donner une première impression générale sur le speech.
-
----
-
-📊 **Note sur 10**
-
-Donne une note sur 10 pour ta performance globale (clarté, structure, émotion, impact). Soit exigeant.
-Ex : “7/10 – Tu poses une intention très claire dès le départ, mais la partie ‘problème’ est un peu rapide.”
-
----
-
-🔍 **Analyse détaillée (par étapes)**
-
-Dans cette partie, analyse objectivement le speech selon les 7 étapes du discours classique d’un·e dialogueur·euse. Tu peux ici revenir à un ton plus neutre (sans tutoiement).
-
-🎯 1. Accroche (qui doit transmettre de la curiosité et ou de la sympathie, il faut éviter les questions fermées avec une durée de temps comme "salut, tu as deux minutes" ou "je m'excuse de te déranger") 
-🤝 2. Introduction  (qui doit inspirer de la confiance, il faut qu'on ait l'impression d'un dialogue, avec des questions pour savoir que fait la personne (fictive) dans la vie)
-💢 3. Problème  (qui doit transmettre de l'empathie et de l'indignation, il faut expliquer le problème, et que cela n'est pas normal qu'il existe)
-🌱 4. Solution  (qui doit transmettre de l'espoir, montrer que ce problème n'est pas insoluble, il faut se remettre à sourire et avoir un ton enjoué)
-🚀 5. Succès  (qui doit transmettre de l'envie : montrer que cela est concret et que dans le passé, l'association a eu des succès)
-➡️ 6. Transition  (qui doit être une phrase affirmative très simple, qui guide la personne et fait le lien entre le speech rempli d'émotions et le formulaire)
-📝 7. Explication du formulaire (simple, structurée et claire, la terminologie doit être centrée sur un formulaire en deux parties : une partie identité, une partie générosité, que le tout semble simple)
-
-Voici la structure à suivre pour chaque étape :
-
-🎯 **[Nom de la partie]**
-- **Présence** : ✓ ou ⚠️
-- **Émotion perçue**
-- **Résumé**
-- **Suggestion d'amélioration**
-
----
-
-🎯 **Conclusions et perspectives**
-
-Reprends ici le tutoiement.
-
-Ton objectif est d’évaluer si le discours repose sur une méthode d’adhésion sincère ou s’il dévie vers des techniques de manipulation émotionnelle, culpabilisation ou pression implicite.
-Identifie et signale précisément les éléments suivants :
-Tonalité manipulatrice : emploi excessif de peur, de chantage émotionnel, d’exagérations ou de termes anxiogènes.
-Culpabilisation du passant : tournures de phrases qui font sentir au passant qu’il serait "mauvais", "indifférent", ou "complice" s’il ne donne pas.
-Langage trop insistant ou directif : absence d’espace pour le choix du passant, formules qui imposent plutôt qu’elles n’invitent.
-Respect du libre arbitre : absence de validation du droit du passant à dire non.
-Équilibre émotionnel : discours basé sur une énergie positive, sincère et informative, sans mise en scène excessive ni pathos appuyé.
-Pour chaque élément problématique, cite le passage exact, explique pourquoi c’est problématique et propose une alternative formulée de manière plus éthique.
-Termine par un message chaleureux, encourageant mais motivant et honnête. Félicite l’effort fourni, encourage à continuer, et donne quelques conseils utiles pour améliorer tes prochains speechs.
-Tu peux conclure de manière simple, pro et humaine.
+        prompt_intro = """
 """
     elif langue_choisie == "de":
         prompt_intro = """Du bist ein Coach mit rhetorischer Expertise, spezialisiert auf die Schulung von Fundraiser:innen für NGOs im Direktkontakt.
