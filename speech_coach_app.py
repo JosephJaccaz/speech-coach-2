@@ -320,20 +320,21 @@ if user_email and audio_bytes and ong_choisie:
     stats = ong_data.get("stats_importantes", {})
 
     ong_context = f"""
-🔎 Infos ONG ({ong_choisie}) :
+    🔎 Infos ONG ({ong_choisie}) :
 
-- Slogan : {slogan}
-- Redflags : {redflags}
-- Pitch modèle : {pitch_model}
-- Statistiques : {stats}
-"""
+    - Slogan : {slogan}
+    - Redflags : {redflags}
+    - Pitch modèle : {pitch_model}
+    - Statistiques : {stats}
+    """
 
     prompt = f"""{prompt_intro}
 
     {ong_context}
 
     {transcript}
-"""
+    """
+
 
 with st.spinner(t["messages"]["generation_feedback"]):
     response = openai.chat.completions.create(
@@ -375,7 +376,7 @@ if note:
         st.markdown(barometre_legendes[langue_choisie])
 
 # ✅ Envoi de l’e-mail (en dehors du `if note`)
-try:
+    try:
     html_feedback = format_feedback_as_html(feedback, langue_detectee)
     msg = MIMEText(html_feedback, "html", "utf-8")
     msg["Subject"] = "💬 Speech Coach IA : Feedback de ton speech"
