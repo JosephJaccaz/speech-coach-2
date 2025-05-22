@@ -38,7 +38,7 @@ textes = {
         "upload_label": "📁 Dépose ici ton fichier audio (MP3 ou WAV uniquement)",
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
-        "transcription_label": "📝 Transcription générée :"
+        "transcription_label": "📝 Transcription générée :",
         "ong_label": "📌 Sélectionne l’ONG concernée :"
     },
     "de": {
@@ -47,7 +47,7 @@ textes = {
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
-        "transcription_label": "📝 Transkription:"
+        "transcription_label": "📝 Transkription:",
         "ong_label": "📌 Wähle die betroffene NGO aus:"
     },
     "it": {
@@ -56,7 +56,7 @@ textes = {
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
-        "transcription_label": "📝 Trascrizione generata:"
+        "transcription_label": "📝 Trascrizione generata:",
         "ong_label": "📌 Seleziona l'ONG interessata:"
     }
 }
