@@ -328,7 +328,7 @@ if user_email and audio_bytes and ong_choisie:
 - Statistiques : {stats}
 """
 
-    prompt = f"""{prompt_intro}
+prompt = f"""{prompt_intro}
 
 {ong_context}
 
