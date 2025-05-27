@@ -136,7 +136,7 @@ langue_choisie = st.selectbox(
     format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
 )
 
-st.title(t["🎤 Speech Coach IA"])
+st.title("🎤 Speech Coach IA")
 
 t = textes[langue_choisie]
 
