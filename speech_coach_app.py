@@ -43,14 +43,13 @@ st.markdown("""
 
 
 st.markdown("""
-    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 40px;">
         <img src="https://www.thejob.ch/wp-content/themes/corris2014/images/corris_logo.svg" width="200" style="margin-bottom: 10px;" />
-        <h1 style="font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 500; font-size: 32px; text-align: center; margin: 10;">
-            Speech Coach IA
+        <h1 style="font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 500; font-size: 32px; text-align: center; margin: 0;">
+            &emsp;Speech Coach IA
         </h1>
     </div>
 """, unsafe_allow_html=True)
-
 
 
 # 🧾 Interface textes
