@@ -129,6 +129,13 @@ barometre_legendes = {
     """
 }
 
+st.markdown("""
+    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-bottom: 30px;'>
+        🎤 Speech Coach IA
+    </h1>
+""", unsafe_allow_html=True)
+
+
 # 🌍 Langue
 langue_choisie = st.selectbox(
     "Choisis ta langue / Wähle deine Sprache / Scegli la tua lingua",
@@ -136,13 +143,10 @@ langue_choisie = st.selectbox(
     format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
 )
 
-st.title("🎤 Speech Coach IA")
 
 t = textes[langue_choisie]
 
 # 🎛 Interface utilisateur
-
-
 
 st.write(t["intro"])
 user_email = st.text_input(t["email_label"], key="email")
