@@ -51,10 +51,11 @@ st.markdown(
 )
 
 st.markdown("""
-    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-bottom: 30px;'>
-          Speech Coach IA
+    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-top: 10px; margin-bottom: 30px;'>
+        Speech Coach IA
     </h1>
 """, unsafe_allow_html=True)
+
 
 
 # 🧾 Interface textes
