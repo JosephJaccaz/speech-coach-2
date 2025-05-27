@@ -50,12 +50,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 🌍 Langue
-langue_choisie = st.selectbox(
-    "Choisis ta langue / Wähle deine Sprache / Scegli la tua lingua",
-    options=["fr", "de", "it"],
-    format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
-)
 
 # 🧾 Interface textes
 
@@ -141,6 +135,14 @@ barometre_legendes = {
 t = textes[langue_choisie]
 
 # 🎛 Interface utilisateur
+
+# 🌍 Langue
+langue_choisie = st.selectbox(
+    "Choisis ta langue / Wähle deine Sprache / Scegli la tua lingua",
+    options=["fr", "de", "it"],
+    format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
+)
+
 st.title(t["titre"])
 st.write(t["intro"])
 user_email = st.text_input(t["email_label"], key="email")
