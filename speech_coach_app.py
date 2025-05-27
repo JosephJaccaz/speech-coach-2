@@ -55,7 +55,6 @@ st.markdown(
 
 textes = {
     "fr": {
-        "titre": "🎤 Speech Coach IA",
         "intro": "Bienvenue ! Upload ici un speech pour savoir s’il colle aux standards vus en formation.",
         "upload_label": "📁 Dépose ici ton fichier audio (MP3 ou WAV uniquement)",
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
@@ -72,7 +71,6 @@ textes = {
         }
     },
     "de": {
-        "titre": "🎤 Speech Coach IA",
         "intro": "Willkommen! Lade hier deine Sprachaufnahme hoch, um ein Feedback zu erhalten.",
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
@@ -89,7 +87,6 @@ textes = {
         }
     },
     "it": {
-        "titre": "🎤 Speech Coach IA",
         "intro": "Benvenuto! Carica qui il tuo speech per ricevere un feedback.",
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
@@ -139,12 +136,14 @@ langue_choisie = st.selectbox(
     format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
 )
 
+st.title(t["🎤 Speech Coach IA"])
+
 t = textes[langue_choisie]
 
 # 🎛 Interface utilisateur
 
 
-st.title(t["titre"])
+
 st.write(t["intro"])
 user_email = st.text_input(t["email_label"], key="email")
 
