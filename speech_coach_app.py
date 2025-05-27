@@ -160,7 +160,6 @@ st.markdown(t["info_format"])
 openai.api_key = st.secrets["openai_key"]
 
 def format_feedback_as_html(feedback_text, langue):
-    <div class='zen-feedback'>
     html = feedback_text
     html = html.replace("✓", "<span style='color:green; font-weight:bold;'>✓</span>")
     html = html.replace("⚠️", "<span style='color:red; font-weight:bold;'>⚠️</span>")
