@@ -166,7 +166,8 @@ def format_feedback_as_html(feedback_text, langue):
         signature += "<p style='font-size:12px; color:#aaa;'>PS : Ce feedback a été généré avec amour, café ☕ et un soupçon de GPT par Joseph 💻</p>"
 
     return f"""
-    <div style='font-family: Verdana, sans-serif; font-size: 15px; color:#000;'>
+    <div style='font-family: Verdana, sans-serif; font-size: 15px; color: inherit;'>
+
         {intro}
         {html_body}
         {signature}
