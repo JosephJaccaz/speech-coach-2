@@ -42,21 +42,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Logo
-st.markdown(
-    "<div style='text-align: center; margin-bottom: 30px;'>"
-    "<img src='https://www.thejob.ch/wp-content/themes/corris2014/images/corris_logo.svg' width='200'>"
-    "</div>",
-    unsafe_allow_html=True
-)
-
 st.markdown("""
-    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-top: 10px; margin-bottom: 30px;'>
-        Speech Coach IA
-    </h1>
+    <div style='text-align: center; margin-bottom: 30px;'>
+        <img src='https://www.thejob.ch/wp-content/themes/corris2014/images/corris_logo.svg' width='200'>
+        <h1 style='font-family: "Zen Kaku Gothic Antique", sans-serif; margin-top: 10px; margin-bottom: 0px; font-size: 36px;'>
+            Speech Coach IA
+        </h1>
+    </div>
 """, unsafe_allow_html=True)
-
-
 
 # 🧾 Interface textes
 
