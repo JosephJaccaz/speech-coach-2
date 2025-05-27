@@ -50,6 +50,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
+    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-bottom: 30px;'>
+        🎤 Speech Coach IA
+    </h1>
+""", unsafe_allow_html=True)
+
 
 # 🧾 Interface textes
 
@@ -128,13 +134,6 @@ barometre_legendes = {
 - ⛔ **Problema (1–2)** : Va completamente rivisto – manca l’adesione sincera.
     """
 }
-
-st.markdown("""
-    <h1 style='text-align: center; font-family: "Zen Kaku Gothic Antique", sans-serif; margin-bottom: 30px;'>
-        🎤 Speech Coach IA
-    </h1>
-""", unsafe_allow_html=True)
-
 
 # 🌍 Langue
 langue_choisie = st.selectbox(
