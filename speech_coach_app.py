@@ -43,13 +43,11 @@ st.markdown("""
 
 
 st.markdown("""
-    <div style='display: flex; justify-content: center;'>
-        <div style='text-align: center;'>
-            <img src='https://www.thejob.ch/wp-content/themes/corris2014/images/corris_logo.svg' style='width:200px; display: block; margin: 0 auto;' />
-            <h1 style='font-family: "Zen Kaku Gothic Antique", sans-serif; font-weight: 500; font-size: 32px; margin-top: 12px; margin-bottom: 20px;'>
-                Speech Coach IA
-            </h1>
-        </div>
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 40px;">
+        <img src="https://www.thejob.ch/wp-content/themes/corris2014/images/corris_logo.svg" width="200" style="margin-bottom: 10px;" />
+        <h1 style="font-family: 'Zen Kaku Gothic Antique', sans-serif; font-weight: 500; font-size: 32px; text-align: center; margin: 0;">
+            Speech Coach IA
+        </h1>
     </div>
 """, unsafe_allow_html=True)
 
