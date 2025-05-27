@@ -77,7 +77,12 @@ textes = {
         }
     },
     "de": {
-        "intro": "Willkommen! Lade hier deine Sprachaufnahme hoch, um ein Feedback zu erhalten.",
+        "intro": "Willkommen in deinem persönlichen Coaching-Bereich 🧠\n\n"
+         "Hier kannst du eine Aufnahme deines Pitchs hochladen und ein strukturiertes, wohlwollendes und hilfreiches Feedback erhalten, um dich weiterzuentwickeln.\n\n"
+         "Die Analyse folgt den 7 Schritten aus dem Training – vom Einstieg bis zur Erklärung des Formulars. Zu jedem Teil erhältst du eine klare Rückmeldung mit konkreten Verbesserungsvorschlägen.\n\n"
+         "Die Verarbeitung erfolgt mithilfe künstlicher Intelligenz (KI), aber deine Stimme wird weder gespeichert noch für Trainingszwecke verwendet. Deine Datei bleibt vollständig vertraulich.\n\n"
+         "Dieses Tool soll dir helfen, deinen Pitch in deinem Tempo und ganz selbstständig zu verfeinern.\n\n"
+         "Bereit für dein Training? Lade deine Datei hoch und erhalte dein persönliches Feedback 🎤",
         "upload_label": "📁 Hier deine Audiodatei hochladen (nur MP3 oder WAV)",
         "email_label": "✉️ E-Mail-Adresse des Fundraisers (für den Erhalt des Feedbacks)",
         "info_format": "⚠️ Aktuell werden nur MP3- und WAV-Dateien unterstützt.",
@@ -93,7 +98,12 @@ textes = {
         }
     },
     "it": {
-        "intro": "Benvenuto! Carica qui il tuo speech per ricevere un feedback.",
+        "intro": "Benvenuto nel tuo spazio di coaching personalizzato 🧠\n\n"
+         "Qui puoi caricare una registrazione del tuo pitch e ricevere un feedback strutturato, benevolo e utile per migliorare.\n\n"
+         "L’analisi segue i 7 passaggi visti durante la formazione: dall’aggancio iniziale fino alla spiegazione del modulo. Per ogni parte riceverai un commento chiaro con suggerimenti concreti.\n\n"
+         "L’elaborazione avviene tramite intelligenza artificiale (IA), ma la tua voce non viene mai conservata né utilizzata per addestrare altri sistemi. Il file resta completamente confidenziale.\n\n"
+         "Questo strumento è pensato per aiutarti a perfezionare il tuo discorso, al tuo ritmo e in piena autonomia.\n\n"
+         "Pront* ad allenarti? Carica il tuo file e scopri il tuo feedback 🎤",
         "upload_label": "📁 Carica il tuo file audio (solo MP3 o WAV)",
         "email_label": "✉️ Indirizzo e-mail del dialogatore (per ricevere il feedback)",
         "info_format": "⚠️ Al momento sono supportati solo file MP3 e WAV.",
