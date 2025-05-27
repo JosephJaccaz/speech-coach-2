@@ -25,6 +25,22 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+
+    html, body, [class*="st-"] {
+        font-family: 'Zen Kaku Gothic Antique', sans-serif !important;
+    }
+
+    .zen-feedback {
+        font-family: 'Zen Kaku Gothic Antique', sans-serif;
+        font-size: 15px;
+        color: inherit;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # Logo
 st.markdown(
@@ -144,6 +160,7 @@ st.markdown(t["info_format"])
 openai.api_key = st.secrets["openai_key"]
 
 def format_feedback_as_html(feedback_text, langue):
+    <div class='zen-feedback'>
     html = feedback_text
     html = html.replace("✓", "<span style='color:green; font-weight:bold;'>✓</span>")
     html = html.replace("⚠️", "<span style='color:red; font-weight:bold;'>⚠️</span>")
