@@ -13,6 +13,19 @@ from PIL import Image, ImageChops
 
 st.set_page_config(page_title="Speech Coach IA", page_icon="🎤")
 
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+
+    .zen-feedback {
+        font-family: 'Zen Kaku Gothic Antique', sans-serif;
+        font-size: 15px;
+        color: inherit;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # Logo
 st.markdown(
     "<div style='text-align: center; margin-bottom: 30px;'>"
@@ -166,12 +179,11 @@ def format_feedback_as_html(feedback_text, langue):
         signature += "<p style='font-size:12px; color:#aaa;'>PS : Ce feedback a été généré avec amour, café ☕ et un soupçon de GPT par Joseph 💻</p>"
 
     return f"""
-    <div style='font-family: Verdana, sans-serif; font-size: 15px; color: inherit;'>
-
-        {intro}
-        {html_body}
-        {signature}
-    </div>
+        <div class='zen-feedback'>
+            {intro}
+            {html_body}
+            {signature}
+        </div>
     """
 
 # Fonctions utilitaires 
