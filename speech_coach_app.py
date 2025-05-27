@@ -132,16 +132,17 @@ barometre_legendes = {
     """
 }
 
-t = textes[langue_choisie]
-
-# 🎛 Interface utilisateur
-
 # 🌍 Langue
 langue_choisie = st.selectbox(
     "Choisis ta langue / Wähle deine Sprache / Scegli la tua lingua",
     options=["fr", "de", "it"],
     format_func=lambda x: {"fr": "Français 🇫🇷", "de": "Deutsch 🇩🇪", "it": "Italiano 🇮🇹"}[x]
 )
+
+t = textes[langue_choisie]
+
+# 🎛 Interface utilisateur
+
 
 st.title(t["titre"])
 st.write(t["intro"])
