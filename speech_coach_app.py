@@ -57,10 +57,11 @@ st.markdown("""
 textes = {
     "fr": {
         "intro": "Bienvenue dans ton espace de coaching personnalisé 🧠\n\n"
-          "Ici, tu peux déposer un enregistrement de ton speech, et recevoir un feedback structuré, bienveillant et utile pour progresser.\n\n"
-          "L’analyse suit les 7 étapes vues en formation : de l’accroche jusqu’à l’explication du formulaire. Pour chaque partie, tu recevras un retour clair avec des pistes d’amélioration.\n\n"
-          "N’hésite pas à tester, même avec un pitch imparfait. Cet outil est là pour t’aider à affiner ton discours à ton rythme, en toute autonomie.\n\n"
-          "Prêt·e à t’entraîner ? Téléverse ton fichier et découvre ton retour ! 🎤",
+         "Ici, tu peux déposer un enregistrement de ton speech, recevoir un feedback structuré, bienveillant et utile pour progresser.\n\n"
+         "L’analyse suit les 7 étapes vues en formation : de l’accroche jusqu’à l’explication du formulaire. Pour chaque partie, tu recevras un retour clair avec des pistes d’amélioration.\n\n"
+         "Le traitement est effectué par une intelligence artificielle (IA), mais ta voix n’est jamais conservée ni utilisée pour entraîner quoi que ce soit. L’outil respecte pleinement la confidentialité de ton fichier.\n\n"
+         "Cet outil est là pour t’aider à affiner ton discours à ton rythme, en toute autonomie.\n\n"
+         "Prêt·e à t’entraîner ? Téléverse ton fichier et découvre ton retour ! 🎤",
         "upload_label": "📁 Dépose ici ton fichier audio (MP3 ou WAV uniquement)",
         "email_label": "✉️ Adresse e-mail du·de la Dialogueur·euse (pour recevoir le feedback)",
         "info_format": "⚠️ Pour l’instant, seuls les fichiers MP3 et WAV sont pris en charge.",
