@@ -57,7 +57,7 @@ st.markdown("""
 textes = {
     "fr": {
         "intro": "Bienvenue dans ton espace de coaching personnalisé 🧠\n\n"
-          "Ici, tu peux déposer un enregistrement de ton pitch (MP3 ou WAV), et recevoir un feedback structuré, bienveillant et utile pour progresser.\n\n"
+          "Ici, tu peux déposer un enregistrement de ton speech, et recevoir un feedback structuré, bienveillant et utile pour progresser.\n\n"
           "L’analyse suit les 7 étapes vues en formation : de l’accroche jusqu’à l’explication du formulaire. Pour chaque partie, tu recevras un retour clair avec des pistes d’amélioration.\n\n"
           "N’hésite pas à tester, même avec un pitch imparfait. Cet outil est là pour t’aider à affiner ton discours à ton rythme, en toute autonomie.\n\n"
           "Prêt·e à t’entraîner ? Téléverse ton fichier et découvre ton retour ! 🎤",
